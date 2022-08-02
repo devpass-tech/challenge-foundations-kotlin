@@ -16,13 +16,5 @@ object ResourceReader: IResourceReader{
         }
 
         return lista
-
     }
-
-}
-
-fun main() {
-    //error -> no such file or directory TODO -> entender pq o fileio nao funfa
-    println(    ResourceReader.readAsList("lista.txt")
-    )
 }
