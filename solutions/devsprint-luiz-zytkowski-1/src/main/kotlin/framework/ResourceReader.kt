@@ -9,12 +9,12 @@ object ResourceReader: IResourceReader{
 
     override fun readAsList(fileName: String): List<String> {
 
-        val lista= ArrayList<String>()
+        val list= ArrayList<String>()
 
-        File(fileName).forEachLine { linha ->
-            lista.add(linha)
+        File(fileName).forEachLine { line ->
+            list.add(line)
         }
 
-        return lista
+        return list
     }
 }
