@@ -1,3 +1,3 @@
 package framework
 
-class OwnedException(message: String) : Exception(message)
+open class OwnedException(message: String) : Exception(message)
