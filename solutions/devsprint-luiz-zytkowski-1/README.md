@@ -66,4 +66,3 @@ Ex.: Salário bruto de R$ 3.500,00.
 
 - Sempre que for necessário "loggar" algo, lembre-se de utilizar a classe `Loggable`
 - Se você precisa ler elementos da pasta `resources`, lembre que existe um objeto chamado `ResourceReader`
-- 
