@@ -1,5 +1,4 @@
 package irrf
-
 data class IRRFRange(
     val minimumValue: Double,
     val maximumValue: Double,
