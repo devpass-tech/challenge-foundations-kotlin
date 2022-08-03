@@ -25,8 +25,10 @@
 // [KT2-23] Criar endpoint de check-in no controller de Check(in/out)
 // [KT2-24] Criar endpoint de check-out no controller de Check(in/out)
 // [KT2-25] Criar endpoint de consulta de movimentações de vaga
+import irrf.IRRFRange
 
 fun main() {
-
+    val IRRFRange = IRRFRange(minimumValue = 10.1, maximumValue = 10.2, rate = 1.0, deductableParcel = 2.0)
+    println(IRRFRange)
 }
 
