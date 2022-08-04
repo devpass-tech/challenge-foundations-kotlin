@@ -1,8 +1,9 @@
 package framework
 
+import framework.exceptions.DoesNotStartsWithException
 import framework.interfaces.IResourceReader
+
 object ResourceReader: IResourceReader{
-    class DoesNotStartsWithException(message: String) : OwnedException(message)
 
     override fun readAsList(fileName: String): List<String> {
 
