@@ -2,22 +2,19 @@ package framework
 
 import framework.interfaces.IResourceReader
 
-
 object ResourceReader: IResourceReader{
+
+    class DoesNotStartsWith(message: String) : OwnedException(message)
 
     override fun readAsList(fileName: String): List<String> {
 
-        val list = mutableListOf<String>()
+        var lines: List<String>
 
-        for(char in fileName.iterator()){
-            list.add(char.toString())
+        if(fileName.startsWith("/")){
+            lines = this::class.java.getResource(fileName).readText().lines()
+        } else{
+            throw DoesNotStartsWith(message = "File path must be initialized with a /")
         }
-
-        if(list[0] != "/") {
-           println("the file path must be initialized with a /")
-        }
-
-        val lines = this::class.java.getResource(fileName).readText().lines()
 
         return lines
     }
