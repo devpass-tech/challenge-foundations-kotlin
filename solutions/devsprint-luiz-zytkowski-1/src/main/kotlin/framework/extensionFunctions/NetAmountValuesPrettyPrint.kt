@@ -8,8 +8,8 @@ fun NetAmountResult.toPrettyPrint() {
             Dedução do INSS: ${deductionInss.toBRLString()}
             Alíquota do IRRF: ${aliquotIrrf} %
             Dedução do IRRF: ${deductionIrrf.toBRLString()}
-            Salário líquido: ${valueNetAmount}
-            Salário bruto: ${valueGrossAmount}
+            Salário líquido: ${valueNetAmount.toBRLString()}
+            Salário bruto: ${valueGrossAmount.toBRLString()}
             """
       )
 }
