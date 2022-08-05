@@ -5,7 +5,7 @@ import framework.exceptions.InvalidRawSalaryException
 import framework.exceptions.InvalidUserNameException
 
 object UserInputReader {
-    fun readUserName() {
+    fun readUserName(): String {
         println("Informe seu nome:")
         val userName = readln()
         val regexNumber = "\\d".toRegex()
@@ -14,15 +14,19 @@ object UserInputReader {
         if (regexNumber.containsMatchIn(userName))
             throw InvalidUserNameException("Nome inválido, por favor inserir apenas letras")
         println("Seu nome é: $userName")
+
+        return userName
     }
 
 
-    fun readRawSalary() {
+    fun readRawSalary(): Double {
         println("Informe seu salário bruto:")
         val rawSalary = readln().toDoubleOrNull()
             ?: throw InvalidRawSalaryException("Por favor, insira um número")
         if (rawSalary < 0)
             throw InvalidRawSalaryException("Por favor, insira um valor maior ou igual a 0")
         println("Seu salário bruto é: $rawSalary")
+
+        return rawSalary
     }
 }
