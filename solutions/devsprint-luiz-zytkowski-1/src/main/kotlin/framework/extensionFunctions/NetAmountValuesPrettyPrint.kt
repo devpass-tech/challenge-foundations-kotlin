@@ -2,14 +2,14 @@ package framework.extensionFunctions
 
 import salarioLiquido.NetAmountResult
 
-fun NetAmountResult.toPrettyPrint(): String {
-    return  println("""
-            aliquotINSS: ${aliquotInss}
-            DeductionINSS: ${deductionInss}
-            AliquotIRRF: ${aliquotIrrf} 
-            DeductionIRRF: ${deductionIrrf}
-            ValueNetAmount: ${valueNetAmount}
-            ValueGrossAmount: ${valueGrossAmount}
+fun NetAmountResult.toPrettyPrint() {
+      println("""
+            Alíquota do INSS: ${aliquotInss}
+            Dedução do INSS: ${deductionInss}
+            Alíquota do IRRF: ${aliquotIrrf} 
+            Dedução do IRRF: ${deductionIrrf}
+            Salário líquido: ${valueNetAmount}
+            Salário bruto: ${valueGrossAmount}
             """
-    ).toString()
+      )
 }
