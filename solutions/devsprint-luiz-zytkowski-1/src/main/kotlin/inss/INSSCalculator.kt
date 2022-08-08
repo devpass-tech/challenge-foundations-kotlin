@@ -1,5 +1,7 @@
 package inss
 
+import framework.exceptions.InvalidRawSalaryException
+
 class INSSCalculator(
     private val grossAmount: Double,
 ) {
@@ -7,24 +9,21 @@ class INSSCalculator(
     val range = selectRange()
 
     private fun selectRange(): Int {
-        println(inssRanges)
         return when {
             (grossAmount > inssRanges[0].minimumValue && grossAmount <= inssRanges[0].maximumValue) -> 0
             (grossAmount >= inssRanges[1].minimumValue && grossAmount <= inssRanges[1].maximumValue) -> 1
             (grossAmount >= inssRanges[2].minimumValue && grossAmount <= inssRanges[2].maximumValue) -> 2
             (grossAmount >= inssRanges[3].minimumValue) -> 3
-
-            else -> throw Exception("nao está em nenhuma faixa")
+            else -> throw InvalidRawSalaryException("Por favor, insira um valor maior ou igual a 0")
         }
     }
 
     private fun dueValueRange(): Double {
         if (checkMaxValue(grossAmount)) {
-            return inssRanges[3].owedValue.also { println(it) }
+            return inssRanges[3].owedValue
         } else {
             val rangeValue = grossAmount - inssRanges[range].minimumValue
             val dueValue = rangeValue * inssRanges[range].rate / 100
-            println("dueValueRange: $dueValue")
             return dueValue
         }
     }
@@ -36,13 +35,9 @@ class INSSCalculator(
             previousValues += inssRanges[i].owedValue
             i++
         }
-        return (dueValueRange() + previousValues).also { println("totalDueValue: $it") }
+        return (dueValueRange() + previousValues)
     }
 
     private fun checkMaxValue(salary: Double) = (salary > inssRanges[3].maximumValue)
 
-}
-
-fun main() {
-    println(INSSCalculator(3500.0).totalDueValue())
 }
