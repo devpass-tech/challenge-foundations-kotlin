@@ -6,7 +6,7 @@ class INSSCalculator(
     private val grossAmount: Double,
 ) {
     private val inssRanges = INSSRangeManager.readFile("/faixasINSS.txt")
-    val range = selectRange()
+    private val range = selectRange()
 
     private fun selectRange(): Int {
         return when {
