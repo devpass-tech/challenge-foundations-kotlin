@@ -2,13 +2,11 @@ package inss
 
 import framework.exceptions.InvalidRawSalaryException
 
-class INSSCalculator(
-    private val grossAmount: Double,
-) {
+class INSSCalculator() {
     private val inssRanges = INSSRangeManager.readFile("/faixasINSS.txt")
-    private val range = selectRange()
+    private var range: Int = 0
 
-    private fun selectRange(): Int {
+    private fun selectRange(grossAmount: Double): Int {
         return when {
             (grossAmount > inssRanges[0].minimumValue && grossAmount <= inssRanges[0].maximumValue) -> 0
             (grossAmount >= inssRanges[1].minimumValue && grossAmount <= inssRanges[1].maximumValue) -> 1
@@ -18,7 +16,7 @@ class INSSCalculator(
         }
     }
 
-    private fun dueValueRange(): Double {
+    private fun dueValueRange(grossAmount: Double): Double {
         if (checkMaxValue(grossAmount)) {
             return inssRanges[3].owedValue
         } else {
@@ -28,14 +26,15 @@ class INSSCalculator(
         }
     }
 
-    fun totalDueValue(): Double {
+    fun totalDueValue(grossAmount: Double): Double {
+        range = selectRange(grossAmount)
         var previousValues = 0.0
-        var i: Int = 0
+        var i = 0
         while (i < range) {
             previousValues += inssRanges[i].owedValue
             i++
         }
-        return (dueValueRange() + previousValues)
+        return (dueValueRange(grossAmount) + previousValues)
     }
 
     private fun checkMaxValue(salary: Double) = (salary > inssRanges[3].maximumValue)
