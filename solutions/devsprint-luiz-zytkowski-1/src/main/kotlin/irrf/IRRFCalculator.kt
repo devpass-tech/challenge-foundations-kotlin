@@ -6,7 +6,7 @@ class IRRFCalculator() {
 
         val irrfRanges: List<IRRFRange> = IRRFRangeManager.readFileIRRF("/faixasIRRF.txt")
 
-        var irrfResult: Double? = 0.0
+        var irrfResult: Double = 0.0
 
         irrfRanges.forEach() { irrfRange ->
             if (salary >= irrfRange.minimumValue && salary <= irrfRange.maximumValue) {
