@@ -2,7 +2,7 @@ package irrf
 
 class IRRFCalculator() {
 
-    fun calculateIRRF(salary: Double): Double? {
+    fun calculateIRRF(salary: Double): Double {
 
         val irrfRanges: List<IRRFRange> = IRRFRangeManager.readFileIRRF("/faixasIRRF.txt")
 
