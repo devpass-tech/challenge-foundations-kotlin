@@ -1,12 +1,10 @@
 package inss
 
-import framework.extensionFunctions.toBRLString
-
 class INSSCalculator() {
-    val inssRanges = INSSRangeManager.readFile("/faixasINSS.txt")
-    var previousValue = 0.0
+    private val inssRanges = INSSRangeManager.readFile("/faixasINSS.txt")
+    private var previousValue = 0.0
 
-    fun dueValueRange(grossAmount: Double): Double {
+    private fun dueValueRange(grossAmount: Double): Double {
         val salary = checkMaxValue(grossAmount)
             inssRanges.forEach {
                 if (salary >= it.minimumValue && salary <=it.maximumValue){
@@ -22,15 +20,11 @@ class INSSCalculator() {
         return dueValueRange(grossAmount)+previousValue
     }
 
-    fun checkMaxValue(salary: Double): Double{
-        if (salary > inssRanges.last().maximumValue){
-            return inssRanges.last().maximumValue
+    private fun checkMaxValue(salary: Double): Double{
+        return if (salary > inssRanges.last().maximumValue){
+            inssRanges.last().maximumValue
         }else{
-            return salary
+            salary
         }
     }
-}
-
-fun main(){
-    println(INSSCalculator().totalDueValue(3500.0).toBRLString())
 }
