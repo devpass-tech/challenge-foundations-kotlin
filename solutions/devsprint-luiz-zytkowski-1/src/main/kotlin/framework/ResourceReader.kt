@@ -3,16 +3,17 @@ package framework
 import framework.exceptions.DoesNotStartsWithException
 import framework.interfaces.IResourceReader
 
-object ResourceReader: IResourceReader{
+object ResourceReader : IResourceReader, Loggable() {
 
     override fun readAsList(fileName: String): List<String> {
 
-        val lines: List<String>
+        var lines: List<String> = listOf<String>()
 
-        if(fileName.startsWith("/")){
-            lines = this::class.java.getResource(fileName).readText().lines()
-        } else{
-            throw DoesNotStartsWithException(message = "File path must be initialized with a /")
+        try {
+            this::class.java.getResource(fileName).readText().lines()
+        } catch (e: Exception) {
+            logger.error("File path must be initialized with a /")
+            throw DoesNotStartsWithException("File path must be initialized with a /")
         }
 
         return lines
