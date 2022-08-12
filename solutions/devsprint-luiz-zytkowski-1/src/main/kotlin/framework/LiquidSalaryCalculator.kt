@@ -1,16 +1,21 @@
 package framework
 
+import inss.INSSCalculator
+import irrf.IRRFCalculator
 import salarioLiquido.NetAmountResult
 
-class LiquidSalaryCalculator {
+class LiquidSalaryCalculator(
+    val inssCalculator: INSSCalculator = INSSCalculator(),
+    val irrfCalculator: IRRFCalculator = IRRFCalculator(),
+    ) {
 
     fun calculateLiquidSalary(
         valueGrossAmount: Double
     ): NetAmountResult {
 
-        var deductionInss = inss.INSSCalculator().totalDueValue(valueGrossAmount)
+        var deductionInss = inssCalculator.totalDueValue(valueGrossAmount)
         var inssValueDeduction = valueGrossAmount - deductionInss
-        var deductionIrrf = irrf.IRRFCalculator().calculateIRRF(inssValueDeduction)
+        var deductionIrrf = irrfCalculator.calculateIRRF(inssValueDeduction)
         var valueNetAmount = valueGrossAmount - deductionInss - deductionIrrf
 
         return NetAmountResult(deductionInss, deductionIrrf, valueNetAmount, valueGrossAmount)
