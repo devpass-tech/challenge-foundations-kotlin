@@ -6,16 +6,13 @@ import framework.interfaces.IResourceReader
 object ResourceReader : IResourceReader, Loggable() {
 
     override fun readAsList(fileName: String): List<String> {
-
-        var lines: List<String> = listOf<String>()
-
-        try {
+        return try {
+            if (!fileName.startsWith("/"))
+                throw DoesNotStartsWithException("File path must be initialized with a /")
             this::class.java.getResource(fileName).readText().lines()
         } catch (e: Exception) {
-            logger.error("File path must be initialized with a /")
-            throw DoesNotStartsWithException("File path must be initialized with a /")
+            logger.error(e.message ?: "Unexpected error")
+            throw e
         }
-
-        return lines
     }
 }
