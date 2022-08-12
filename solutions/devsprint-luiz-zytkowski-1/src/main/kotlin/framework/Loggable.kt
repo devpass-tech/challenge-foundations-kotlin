@@ -3,16 +3,21 @@ package framework
 import framework.interfaces.ILogger
 open class Loggable {
     object logger: ILogger {
+        var counter: Int = 0
+
         override fun error(message: String) {
-            println("[Error] $message")
+            counter++
+            println("$counter [Error] $message")
         }
 
         override fun info(message: String) {
-            println("[Info] $message")
+            counter++
+            println("$counter [Info] $message")
         }
 
         override fun warn(message: String) {
-            println("[Warn] $message")
+            counter++
+            println("$counter [Warn] $message")
         }
     }
 }

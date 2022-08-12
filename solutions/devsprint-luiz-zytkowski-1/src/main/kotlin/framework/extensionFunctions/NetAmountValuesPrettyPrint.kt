@@ -3,11 +3,11 @@ package framework.extensionFunctions
 import salarioLiquido.NetAmountResult
 
 fun NetAmountResult.toPrettyPrint() {
-    println("""
-            Salário bruto: ${valueGrossAmount.toBRLString()}
+      println("""
             Dedução do INSS: ${deductionInss.toBRLString()}
             Dedução do IRRF: ${deductionIrrf.toBRLString()}
-            
-            Salário líquido: ${valueNetAmount.toBRLString()}"""
-    )
+            Salário líquido: ${valueNetAmount.toBRLString()}
+            Salário bruto: ${valueGrossAmount.toBRLString()}
+            """
+      )
 }
