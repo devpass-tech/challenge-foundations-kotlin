@@ -5,15 +5,14 @@ import salarioLiquido.NetAmountResult
 class LiquidSalaryCalculator {
 
     fun calculateLiquidSalary(
-        aliquotInss: Double,
-        deductionInss: Double,
-        aliquotIrrf: Double,
-        deductionIrrf: Double,
         valueGrossAmount: Double
     ): NetAmountResult {
 
+        var deductionInss = inss.INSSCalculator().totalDueValue(valueGrossAmount)
+        var inssValueDeduction = valueGrossAmount - deductionInss
+        var deductionIrrf = irrf.IRRFCalculator().calculateIRRF(inssValueDeduction)
         var valueNetAmount = valueGrossAmount - deductionInss - deductionIrrf
 
-        return NetAmountResult(aliquotInss, deductionInss, aliquotIrrf, deductionIrrf, valueNetAmount, valueGrossAmount)
+        return NetAmountResult(deductionInss, deductionIrrf, valueNetAmount, valueGrossAmount)
     }
 }

@@ -1,9 +1,7 @@
 package salarioLiquido
 
-data class NetAmountResult (
-    var aliquotInss: Double,
+data class NetAmountResult(
     var deductionInss: Double,
-    var aliquotIrrf: Double,
     var deductionIrrf: Double,
     var valueNetAmount: Double,
     var valueGrossAmount: Double
