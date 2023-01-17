@@ -1,3 +1,3 @@
 package framework.interfaces
 
-fun Double.asReaisString() : String = "R$ $this"
+fun Double.asReaisString() : String = "R$ ${"%.2f".format(this)}"
