@@ -1,4 +1,4 @@
-import framework.interfaces.asReaisString
+import framework.asReaisString
 
 fun main() {
     val value = 2000.0
