@@ -1,7 +1,10 @@
 package irrf
+
+import Rangeable
+
 data class IRRFRange(
-    val minimumValue: Double,
-    val maximumValue: Double,
+    override val minimumValue: Double,
+    override val maximumValue: Double,
     val rate: Double,
     val deductableParcel: Double
-)
+) : Rangeable

@@ -1,8 +1,10 @@
 package inss
 
+import Rangeable
+
 data class INSSRange(
-    val minimumValue: Double,
-    val maximumValue: Double,
+    override val minimumValue: Double,
+    override val maximumValue: Double,
     val rate: Double,
     val owedValue: Double
-)
+) : Rangeable
