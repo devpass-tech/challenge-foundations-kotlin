@@ -4,8 +4,8 @@ import inss.FaixaINSS
 import irrf.FaixaIRRF
 
 data class ResultadoSalarioLiquido(
-    val gross_salary: Double,
-    val net_salary: Double,
-    val discount_INSS: Float,
-    val discount_IRRF: Float
+    val grossSalary: Double,
+    val netSalary: Double,
+    val discountINSS: Float,
+    val discountIRRF: Float
 )
