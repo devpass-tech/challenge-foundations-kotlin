@@ -1,20 +1,17 @@
 package irrf
 
-import framework.ResourceReader
+import framework.RangerManager
 import framework.extractValueFrom
 
-object IRRFRangerManager {
-
-    fun readFile(file: String) = ResourceReader.readAsList(file)
-        .map {
-            val item = it.split("@")
-            FaixaIRRF(
-                item.extractValueFrom(0).toDouble(),
-                replaceMaxDoubleValue(item.extractValueFrom(1)),
-                item.extractValueFrom(2).toFloat(),
-                item.extractValueFrom(3).toFloat(),
-            )
-        }
+object IRRFRangerManager : RangerManager<FaixaIRRF>() {
+    override fun createFaixa(range: List<String>): FaixaIRRF {
+        return FaixaIRRF(
+            range.extractValueFrom(0).toDouble(),
+            replaceMaxDoubleValue(range.extractValueFrom(1)),
+            range.extractValueFrom(2).toFloat(),
+            range.extractValueFrom(3).toFloat(),
+        )
+    }
 
     private fun replaceMaxDoubleValue(max: String): Double {
         return when (max) {
@@ -22,4 +19,5 @@ object IRRFRangerManager {
             else -> max.toDouble()
         }
     }
+
 }

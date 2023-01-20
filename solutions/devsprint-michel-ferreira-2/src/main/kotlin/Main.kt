@@ -1,17 +1,16 @@
 import framework.asReaisString
 import framework.exceptionhandler.InvalidRawSalaryException
 import irrf.IRRFRangerManager
+import salarioLiquido.NetSalaryResult
 
 fun main() {
     println("insert your salary")
 
-    val salary = validateInputSalary(readLine()!!)
 
-    println(salary.asReaisString())
 
-    // TODO remove this later after validation :)
-    println("\ntesting IRRFRangerManager:\n" +
-            IRRFRangerManager.readFile("/faixasIRRF.txt"))
+    NetSalaryResult(2.0, 3.0, 1.25f, 2f)
+        .prettyPrint()
+        .also { println(it) }
 }
 
 fun validateInputSalary(salary : String) : Double{
