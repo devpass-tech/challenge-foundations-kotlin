@@ -18,3 +18,8 @@ fun main() {
         ExceptionHandler.handleException(e)
     }
 }
+
+interface Rangeable {
+    val minimumValue: Double
+    val maximumValue: Double
+}

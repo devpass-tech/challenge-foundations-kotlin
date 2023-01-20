@@ -1,10 +1,13 @@
 package irrf
 
+import RangeManager
+import Rangeable
+
 class IRRFCalculator() {
 
     fun calculateIRRF(salary: Double): Double {
 
-        val irrfRanges: List<IRRFRange> = IRRFRangeManager.readFileIRRF("/faixasIRRF.txt")
+        val irrfRanges: List<IRRFRange> = IRRFRangeManager.readFile("/faixasIRRF.txt")
 
         var irrfResult: Double = 0.0
 
