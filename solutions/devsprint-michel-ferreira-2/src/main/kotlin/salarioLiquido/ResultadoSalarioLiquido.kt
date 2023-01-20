@@ -1,6 +1,6 @@
 package salarioLiquido
 
-class ResultadoSalarioLiquido (
+data class ResultadoSalarioLiquido (
     val grossSalary: Double,
     val netSalary: Double,
     val discountINSS: Float,
