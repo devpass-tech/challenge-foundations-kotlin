@@ -3,21 +3,17 @@ package framework.exceptionhandler
 import framework.Loggable
 
 object ExceptionHandler : Loggable() {
-
     fun handler(ex: Exception) {
+        logger.error(ex.message.toString())
         when (ex) {
             is InvalidRawSalaryException -> {
-                println(ex.message)
-                println("Valor precisa ser numerico ex: 3559.50")
+                logger.error("Valor precisa ser numerico ex: 3559.50")
             }
             is NotFoundException -> {
-                println(ex.message)
-                println("Se o arquivo estiver no resources não esqueça da / meu caro dev")
+                logger.error("Se o arquivo estiver no resources não esqueça da / meu caro dev")
             }
-            is OwnedException -> println(ex.message)
             else -> {
-                logger.error(ex.message.toString())
-                println("Tivemos um problema para calcular seu salário líquido, contate os mega-devs da DevPass")
+                logger.error("Tivemos um problema para calcular seu salário líquido, contate os mega-devs da DevPass")
             }
         }
     }
