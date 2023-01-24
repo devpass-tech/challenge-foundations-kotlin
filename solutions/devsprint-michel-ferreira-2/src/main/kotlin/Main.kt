@@ -1,14 +1,14 @@
-import framework.asReaisString
 import framework.exceptionhandler.InvalidRawSalaryException
-import irrf.IRRFRangerManager
+import inss.INSSCalculator
 import salarioLiquido.NetSalaryResult
 
 fun main() {
     println("insert your salary")
+    val salary = validateInputSalary(readLine()!!)
 
+    println(INSSCalculator().calculate(salary))
 
-
-    NetSalaryResult(2.0, 3.0, 1.25f, 2f)
+    NetSalaryResult(2.0, 3.0, 1.25, 2.0)
         .prettyPrint()
         .also { println(it) }
 }
