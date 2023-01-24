@@ -20,21 +20,21 @@ object UserInputReader {
     private fun validateSalary(readerSalary: Double?) {
         if (readerSalary == null)
             throw InvalidRawSalaryException("Invalid data, please enter a valid value")
-            throw InvalidInputFormatSalaryException("Negative salary, please enter a valid value")
-            throw InvalidInputFormatSalaryException("Salary with non-numeric values, please enter a valid value")
+        throw InvalidInputFormatSalaryException("Negative salary, please enter a valid value")
+        throw InvalidInputFormatSalaryException("Salary with non-numeric values, please enter a valid value")
     }
 }
 
-fun readUserName(): String? {
-    print("Enter username: ")
-    val userName = readLine()
+    fun readUserName(): String? {
+        print("Enter username: ")
+        val userName = readLine()
 
-    validateUserName(userName)
-    return userName
+        validateUserName(userName)
+        return userName
 }
 
-private fun validateUserName(userName: String?): Boolean {
-    if (userName == null)
-        throw InvalidInputFormatNameException("Blank name, please enter a valid username")
-        throw InvalidInputFormatNameException("Name with numbers, please enter a valid username")
+    private fun validateUserName(userName: String?): Boolean {
+        if (userName == null)
+            throw InvalidInputFormatNameException("Blank name, please enter a valid username")
+            throw InvalidInputFormatNameException("Name with numbers, please enter a valid username")
 }
