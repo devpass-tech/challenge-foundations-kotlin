@@ -6,9 +6,9 @@ fun main() {
     println("insert your salary")
     val salary = validateInputSalary(readLine()!!)
 
-    println("INSS amount: ${INSSCalculator().calculate(salary)}")
+    println(INSSCalculator().calculate(salary))
 
-    NetSalaryResult(2.0, 3.0, 1.25f, 2f)
+    NetSalaryResult(2.0, 3.0, 1.25, 2.0)
         .prettyPrint()
         .also { println(it) }
 }

@@ -1,14 +1,14 @@
 package inss
 
 import framework.exceptionhandler.NotFoundException
-import kotlin.math.roundToInt
+import framework.formatSalary
 
 class INSSCalculator {
     fun calculate(salarioBruto: Double): Double {
         val listRanges = INSSRangeManager.getFaixas("/faixasINSS.txt")
         var owedValueAmount = 0.0
-        var rateValue : Double
         var inssAmount = 0.0
+        var rateValue: Double
 
         if (listRanges.isEmpty()) {
             throw NotFoundException("faixasINSS esta vazia ou inexistente")
@@ -21,15 +21,15 @@ class INSSCalculator {
                 }
 
                 salarioBruto > it.minimumValue && salarioBruto < it.maximumValue -> {
-                    inssAmount = (salarioBruto - it.minimumValue).toInt().toDouble()
+                    inssAmount = (salarioBruto - it.minimumValue)
                     rateValue = inssAmount * (it.rate / 100)
-                    return (rateValue + owedValueAmount).roundToInt().toDouble()
+                    return (rateValue + owedValueAmount).formatSalary()
                 }
 
                 salarioBruto > listRanges.last().maximumValue -> {
-                    inssAmount = (salarioBruto - it.maximumValue).toInt().toDouble()
-                    rateValue = inssAmount * (it.rate / 100)
-                    return (rateValue + owedValueAmount).roundToInt().toDouble()
+                    return listRanges.sumOf { faixa ->
+                        faixa.owedValue
+                    }.formatSalary(2)
                 }
             }
             owedValueAmount += it.owedValue
