@@ -4,11 +4,12 @@ import inss.INSSCalculator
 import irrf.IRRFCalculator
 
 class LiquidSalaryCalculator(
-    private val inssCalculator: INSSCalculator,
-    private val irrfCalculator: IRRFCalculator
+    private val inssCalculator: INSSCalculator = INSSCalculator(),
+    private val irrfCalculator: IRRFCalculator = IRRFCalculator()
 ) {
+
     fun calculate(grossSalary: Double): NetSalaryResult {
-        val deductionINSS = inssCalculator.calculateINSS(grossSalary)
+        val deductionINSS = inssCalculator.calculate(grossSalary)
         val deductionIRRF = irrfCalculator.calculateIRRF(grossSalary - deductionINSS)
         val netSalary = grossSalary - deductionINSS - deductionIRRF
 

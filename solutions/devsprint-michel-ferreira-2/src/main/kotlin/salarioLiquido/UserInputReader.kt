@@ -1,24 +1,25 @@
-@file:Suppress("UNREACHABLE_CODE")
-
 package salarioLiquido
 
 import framework.exceptionhandler.InvalidInputFormatNameException
 import framework.exceptionhandler.InvalidInputFormatSalaryException
 import framework.exceptionhandler.InvalidRawSalaryException
+import framework.hasNumbers
 
 object UserInputReader {
 
     fun readRawSalary(): Double {
-
-        val readerSalary = readLine()
-        val salaryValidation = validateSalary(readerSalary)
         print("Inform gross salary: ")
+        val readerSalary = readLine()
+        return validateSalary(readerSalary)
+    }
 
-        return salaryValidation
+    fun readUserName(): String {
+        print("Enter username: ")
+        return validateUserName(readLine())
     }
 
     private fun validateSalary(readerSalary: String?): Double {
-        if (readerSalary == null)
+        if (readerSalary.isNullOrBlank())
             throw InvalidRawSalaryException("Invalid data, please enter a valid value")
         val salaryAsDouble = try {
             readerSalary.toDouble()
@@ -26,20 +27,12 @@ object UserInputReader {
             throw InvalidInputFormatSalaryException("Salary with non-numeric values, please enter a valid value")
         }
         if (salaryAsDouble <= 0.0) throw InvalidInputFormatSalaryException("Negative salary, please enter a valid value")
-
         return salaryAsDouble
     }
 
-    fun readUserName(): String? {
-        print("Enter username: ")
-        val userName = readLine()
-
-        validateUserName(userName)
+    private fun validateUserName(userName: String?): String {
+        if (userName.isNullOrBlank()) throw InvalidInputFormatNameException("Blank name, please enter a valid username")
+        if (userName.hasNumbers()) throw InvalidInputFormatNameException("Name with numbers, please enter a valid username")
         return userName
-    }
-
-    private fun validateUserName(userName: String?): Boolean {
-        if (userName == null) throw InvalidInputFormatNameException("Blank name, please enter a valid username")
-        throw InvalidInputFormatNameException("Name with numbers, please enter a valid username")
     }
 }
