@@ -11,3 +11,5 @@ fun List<String>.extractValueFrom(index: Int) = try {
 } catch (ex: Exception) {
     throw ThereIsNoValueFromIndex("Index $index not found")
 }
+
+fun Double.formatSalary(digits : Int = 2) : Double = "%.${digits}f".format(this).toDouble()
