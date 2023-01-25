@@ -10,7 +10,7 @@ class LiquidSalaryCalculator(
 
     fun calculate(grossSalary: Double): NetSalaryResult {
         val deductionINSS = inssCalculator.calculate(grossSalary)
-        val deductionIRRF = irrfCalculator.calculateIRRF(grossSalary - deductionINSS)
+        val deductionIRRF = irrfCalculator.calculate(grossSalary - deductionINSS)
         val netSalary = grossSalary - deductionINSS - deductionIRRF
 
         return NetSalaryResult(
