@@ -4,7 +4,7 @@ import framework.exceptionhandler.NotFoundException
 import framework.formatSalary
 import framework.interfaces.ICalculable
 
-class INSSCalculator: ICalculable {
+class INSSCalculator : ICalculable {
     override fun calculate(salarioBruto: Double): Double {
         val listRanges = INSSRangeManager.getFaixas("/faixasINSS.txt")
         var owedValueAmount = 0.0
