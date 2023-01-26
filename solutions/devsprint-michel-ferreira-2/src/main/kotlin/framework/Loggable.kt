@@ -3,7 +3,7 @@ package framework
 import framework.interfaces.ILogger
 
 open class Loggable {
-    val logger = object : ILogger {
+    object logger : ILogger {
         override fun info(message: String) {
             println("[Info] $message")
         }
