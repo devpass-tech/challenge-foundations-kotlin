@@ -1,6 +1,6 @@
 package salarioLiquido
 
-import framework.asReaisString
+import framework.numberFormatCurrency
 
 data class NetSalaryResult(
     val grossSalary: Double,
@@ -10,10 +10,10 @@ data class NetSalaryResult(
 ) {
     fun prettyPrint(): String {
         return """
-            Salario Bruto: ${grossSalary.asReaisString()}  
-            Salario Liquido: ${netSalary.asReaisString()}
-            Desconto INSS: ${discountINSS.asReaisString()}
-            Desconto IRRF: ${discountIRRF.asReaisString()}
+            Salario Bruto: ${grossSalary.numberFormatCurrency()}  
+            Salario Liquido: ${netSalary.numberFormatCurrency()}
+            Desconto INSS: ${discountINSS.numberFormatCurrency()}
+            Desconto IRRF: ${discountIRRF.numberFormatCurrency()}
         """
     }
 }

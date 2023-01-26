@@ -1,10 +1,8 @@
 package framework
 
 import framework.exceptionhandler.ThereIsNoValueFromIndex
-
-fun Double.asReaisString(): String {
-    return "R$ ${"%.2f".format(this)}"
-}
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 fun Float.asPercent() = this / 100
 
@@ -17,3 +15,9 @@ fun List<String>.extractValueFrom(index: Int) = try {
 fun Double.formatSalary(digits : Int = 2) : Double = "%.${digits}f".format(this).toDouble()
 
 fun String.hasNumbers() = this.any { it.isDigit() }
+
+fun Double.numberFormatCurrency() : String {
+    val formatter: NumberFormat = DecimalFormat("#,###.##")
+    return "R$ ${formatter.format(this)}"
+}
+
