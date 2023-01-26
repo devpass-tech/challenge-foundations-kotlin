@@ -2,7 +2,9 @@ package framework
 
 import framework.exceptionhandler.ThereIsNoValueFromIndex
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
+import java.util.*
 
 fun Float.asPercent() = this / 100
 
@@ -17,7 +19,6 @@ fun Double.formatSalary(digits : Int = 2) : Double = "%.${digits}f".format(this)
 fun String.hasNumbers() = this.any { it.isDigit() }
 
 fun Double.numberFormatCurrency() : String {
-    val formatter: NumberFormat = DecimalFormat("#,###.##")
+    val formatter: NumberFormat = DecimalFormat("#,###.##", DecimalFormatSymbols(Locale("pt", "br")))
     return "R$ ${formatter.format(this)}"
 }
-
