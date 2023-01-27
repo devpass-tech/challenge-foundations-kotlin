@@ -1,16 +1,14 @@
 package salarioLiquido
 
+import framework.exceptionhandler.NotFoundException
+import framework.interfaces.ICalculable
 import inss.INSSCalculator
 import irrf.IRRFCalculator
 
-class LiquidSalaryCalculator(
-    private val inssCalculator: INSSCalculator = INSSCalculator(),
-    private val irrfCalculator: IRRFCalculator = IRRFCalculator()
-) {
-
+class LiquidSalaryCalculator {
     fun calculate(grossSalary: Double): NetSalaryResult {
-        val deductionINSS = inssCalculator.calculate(grossSalary)
-        val deductionIRRF = irrfCalculator.calculate(grossSalary - deductionINSS)
+        val deductionINSS = calculatorManager("INSS").calculate(grossSalary)
+        val deductionIRRF = calculatorManager("IRRF").calculate(grossSalary - deductionINSS)
         val netSalary = grossSalary - deductionINSS - deductionIRRF
 
         return NetSalaryResult(
@@ -19,5 +17,15 @@ class LiquidSalaryCalculator(
             discountINSS = deductionINSS,
             discountIRRF = deductionIRRF
         )
+    }
+
+    companion object {
+        fun calculatorManager(type: String): ICalculable {
+            return when (type) {
+                "INSS" -> INSSCalculator()
+                "IRRF" -> IRRFCalculator()
+                else -> throw NotFoundException("Tipo de Cálculo não encontrado: $type")
+            }
+        }
     }
 }
