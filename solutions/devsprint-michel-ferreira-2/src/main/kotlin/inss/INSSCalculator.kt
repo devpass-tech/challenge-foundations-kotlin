@@ -1,10 +1,11 @@
 package inss
 
+import framework.Loggable
 import framework.exceptionhandler.NotFoundException
 import framework.formatSalary
 import framework.interfaces.ICalculable
 
-class INSSCalculator : ICalculable {
+class INSSCalculator : ICalculable, Loggable() {
     override fun calculate(salarioBruto: Double): Double {
         val listRanges = INSSRangeManager.getFaixas("/faixasINSS.txt")
         var owedValueAmount = 0.0
@@ -36,5 +37,8 @@ class INSSCalculator : ICalculable {
             owedValueAmount += it.owedValue
         }
         return inssAmount
+            .also {
+                logger.info("Calculo INSS realizado com sucesso. Valor: $it")
+            }
     }
 }

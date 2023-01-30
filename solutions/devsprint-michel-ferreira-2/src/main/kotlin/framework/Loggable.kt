@@ -2,29 +2,24 @@ package framework
 
 import framework.interfaces.ILogger
 
-fun main() {
-    Loggable().logCounter()
-}
-
 open class Loggable {
-    fun logCounter() {
-        logger.info("Oi")
-        logger.warn("Oi")
-        logger.error("Oi")
-        logger.info("Oi")
-    }
-
     object logger : ILogger {
+        private var count: Int = 1
         override fun info(message: String) {
-            println("[Info] $message")
+            println("$count - [Info] $message")
+                .also { incrementCountLogger() }
         }
 
         override fun warn(message: String) {
-            println("[Warn] $message")
+            println("$count - [Warn] $message")
+                .also { incrementCountLogger() }
         }
 
         override fun error(message: String) {
-            println("[Error] $message")
+            println("$count - [Error] $message")
+                .also { incrementCountLogger() }
         }
+
+        private fun incrementCountLogger() = count++
     }
 }

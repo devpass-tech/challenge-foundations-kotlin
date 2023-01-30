@@ -14,11 +14,11 @@ fun List<String>.extractValueFrom(index: Int) = try {
     throw ThereIsNoValueFromIndex("Index $index not found")
 }
 
-fun Double.formatSalary(digits : Int = 2) : Double = "%.${digits}f".format(this).toDouble()
+fun Double.formatSalary(digits: Int = 2): Double = "%.${digits}f".format(this, Locale.US).toDouble()
 
 fun String.hasNumbers() = this.any { it.isDigit() }
 
-fun Double.numberFormatCurrency() : String {
+fun Double.numberFormatCurrency(): String {
     val formatter: NumberFormat = DecimalFormat("#,###.##", DecimalFormatSymbols(Locale("pt", "br")))
     return "R$ ${formatter.format(this)}"
 }

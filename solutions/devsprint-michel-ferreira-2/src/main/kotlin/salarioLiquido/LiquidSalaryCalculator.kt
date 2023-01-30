@@ -1,11 +1,12 @@
 package salarioLiquido
 
+import framework.Loggable
 import framework.exceptionhandler.NotFoundException
 import framework.interfaces.ICalculable
 import inss.INSSCalculator
 import irrf.IRRFCalculator
 
-class LiquidSalaryCalculator {
+class LiquidSalaryCalculator : Loggable() {
     fun calculate(grossSalary: Double): NetSalaryResult {
         val deductionINSS = calculatorManager("INSS").calculate(grossSalary)
         val deductionIRRF = calculatorManager("IRRF").calculate(grossSalary - deductionINSS)

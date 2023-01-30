@@ -10,6 +10,9 @@ object ResourceReader : IResourceReader, Loggable() {
             val message = "File ${fileName.replace("/", "")} not found!"
             val resource = this::class.java.getResource(fileName) ?: throw NotFoundException(message)
             resource.readText().lines()
+                .also {
+                    logger.info("Arquivo $fileName carregado com sucesso")
+                }
         } catch (e: OwnedException) {
             logger.error(e.message ?: "error")
             throw e
