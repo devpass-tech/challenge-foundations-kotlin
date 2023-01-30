@@ -11,7 +11,7 @@ object ExceptionHandler : Loggable() {
             }
 
             is NotFoundException -> {
-                logger.info("Se o arquivo estiver no resources não esqueça da / meu caro dev\n" +
+                logger.info("O recurso solicitado nao foi encontrado!" +
                         " [Message: ${ex.message.toString()}]")
             }
 
@@ -30,7 +30,7 @@ object ExceptionHandler : Loggable() {
                         " [Message: ${ex.message.toString()}]")
             }
 
-            !is OwnedException -> {
+            is OwnedException -> {
                 logger.error("Houve um erro inesperado, por favor tente novamente\n" +
                         " [Message: ${ex.message.toString()}]")
             }
