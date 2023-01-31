@@ -57,7 +57,7 @@ Após definir valor de INSS, e valor de IRRF, subtraia-os do salário bruto, e t
 
 Ex.: Salário bruto de R$ 3.500,00.
 
-1. IINSS: 329.00
+1. INSS: 329.00
 2. IRRF: 120.85
 3. Salário Líquido: 3500 - 329.00 - 120.85 = 3050.15
 4. Salário Líquido: R$ 3050.15
